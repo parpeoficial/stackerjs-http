@@ -1,0 +1,7 @@
+# App files and folders
+/.babelrc
+/.nyc_output
+/.travis.yml
+/coverage
+/node_modules
+/src
