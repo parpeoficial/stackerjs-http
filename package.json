@@ -1,0 +1,45 @@
+{
+    "name": "stackerjs-http",
+    "version": "0.1.0",
+    "author": {
+        "name": "Vinicius Guedes",
+        "email": "viniciusgued@gmail.com",
+        "url": "https://vinyguedess.github.io"
+    },
+    
+    "dependencies": {
+        "babel-polyfill": "^6.26.0",
+        "request": "^2.83.0",
+        "stackerjs-types": "^0.1.1"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.0",
+        "babel-plugin-istanbul": "^4.1.5",
+        "babel-preset-env": "^1.6.1",
+        "babel-register": "^6.26.0",
+        "chai": "^4.1.2",
+        "mocha": "^5.0.1",
+        "nyc": "^11.4.1"
+    },
+
+    "nyc": {
+        "exclude": [
+            "lib"
+        ],
+        "instrument": false,
+        "require": [
+            "babel-register",
+            "babel-polyfill"
+        ],
+        "reporter": [
+            "lcov",
+            "text"
+        ],
+        "sourceMap": true
+    },
+    "scripts": {
+        "build": "./node_modules/.bin/babel src -d lib",
+        "test": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha"
+    }
+}
