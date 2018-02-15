@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { MakeRequest, Response } from "./../../lib";
+import { MakeRequest, Response, Exceptions } from "./../../lib";
 
 
 describe('Functional/MakeRequestTest', () => 
@@ -119,6 +119,33 @@ describe('Functional/MakeRequestTest', () =>
                 .get('/some-thing')
                 .catch(err => expect(err.message).to.be.equal('connect ECONNREFUSED 127.0.0.1:3000'))
                 .then(() => done());
+        });
+
+        describe('Throwing Exceptions', () => 
+        {
+            it('Should throw BadRequestException', () => 
+            {
+                expect(() => { throw new Exceptions.BadRequestError("Bad request") })
+                    .to.throw('Bad request');
+            });
+
+            it('Should throw UnauthorizedException', () => 
+            {
+                expect(() => { throw new Exceptions.UnauthorizedError("Unauthorized") })
+                    .to.throw('Unauthorized');
+            });
+
+            it('Should throw ForbiddenException', () => 
+            {
+                expect(() => { throw new Exceptions.ForbiddenError("Forbidden") })
+                    .to.throw('Forbidden');
+            });
+
+            it('Should throw NotFoundException', () => 
+            {
+                expect(() => { throw new Exceptions.NotFoundError("Not found") })
+                    .to.throw('Not found');
+            });
         });
     });
 
