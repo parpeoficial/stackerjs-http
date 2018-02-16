@@ -4,10 +4,15 @@ import { StackerJS } from 'stackerjs-types';
 declare module "stackerjs-http"
 {
 
-    export class Request extends StackerJS.Http.Request {}
+    export namespace Http
+    {
 
-    export class Response extends StackerJS.Http.Response {}
+        export class Request extends StackerJS.Http.Request {}
 
-    export class MakeRequest extends StackerJS.Http.MakeRequest {}
+        export class Response extends StackerJS.Http.Response {}
+
+        export class MakeRequest extends StackerJS.Http.MakeRequest {}
+
+    }
 
 }
