@@ -3,5 +3,6 @@
 /.nyc_output
 /.travis.yml
 /coverage
+!/lib
 /node_modules
 /src
