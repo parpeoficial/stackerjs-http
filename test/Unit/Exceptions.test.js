@@ -1,30 +1,30 @@
 import { expect } from 'chai';
-import { Exceptions } from './../../lib';
+import { Http } from './../../lib';
 
 
 describe('Unit/ExceptionsTest', () => 
 {
     it('Should throw BadRequestException', () => 
     {
-        expect(() => { throw new Exceptions.BadRequestError("Bad request") })
-            .to.throw('Bad request');
+        expect(() => { throw new Http.Exceptions.BadRequestError("Bad request") })
+            .to.throw();
     });
 
     it('Should throw UnauthorizedException', () => 
     {
-        expect(() => { throw new Exceptions.UnauthorizedError("Unauthorized") })
-            .to.throw('Unauthorized');
+        expect(() => { throw new Http.Exceptions.UnauthorizedError("Unauthorized") })
+            .to.throw();
     });
 
     it('Should throw ForbiddenException', () => 
     {
-        expect(() => { throw new Exceptions.ForbiddenError("Forbidden") })
-            .to.throw('Forbidden');
+        expect(() => { throw new Http.Exceptions.ForbiddenError("Forbidden") })
+            .to.throw();
     });
 
     it('Should throw NotFoundException', () => 
     {
-        expect(() => { throw new Exceptions.NotFoundError("Not found") })
-            .to.throw('Not found');
+        expect(() => { throw new Http.Exceptions.NotFoundError("Not found") })
+            .to.throw();
     });
 });

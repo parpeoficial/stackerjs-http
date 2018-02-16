@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Request } from './../../lib';
+import { Http } from './../../lib';
 
 
 describe('Unit/RequestTest', () => 
@@ -10,7 +10,7 @@ describe('Unit/RequestTest', () =>
     {
         it('Should create a Request', () => 
         {
-            REQUEST = new Request({
+            REQUEST = new Http.Request({
                 'method': 'GET',
                 'query': {
                     'some': 'thing'
