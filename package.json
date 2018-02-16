@@ -43,7 +43,6 @@
     },
     "scripts": {
         "build": "./node_modules/.bin/babel src -d lib",
-        "test": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha",
-        "prepublish": "ls && npm install && npm run build"
+        "test": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha"
     }
 }
