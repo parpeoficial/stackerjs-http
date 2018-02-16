@@ -1,0 +1,3 @@
+# App files to ignore
+/.travis.yml
+/src

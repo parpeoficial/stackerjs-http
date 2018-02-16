@@ -1,6 +1,6 @@
 {
     "name": "stackerjs-http",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "author": {
         "name": "Vinicius Guedes",
         "email": "viniciusgued@gmail.com",
@@ -8,9 +8,6 @@
     },
     "main": "lib/index.js",
     "types": "index.d.ts",
-    "files": [
-        "index.d.ts", "lib", "package.json", "package-lock.json", "README.md"
-    ],
     
     "dependencies": {
         "babel-polyfill": "^6.26.0",
@@ -46,6 +43,7 @@
     },
     "scripts": {
         "build": "./node_modules/.bin/babel src -d lib",
-        "test": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha"
+        "test": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha",
+        "prepublish": "npm run build"
     }
 }
