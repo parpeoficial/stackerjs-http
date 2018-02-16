@@ -16,3 +16,10 @@ script:
 
 after_success:
   - codecov
+
+deploy:
+  provider: npm
+  email: "admin@parpe.com"
+  api_key: $NPM_TOKEN
+  on:
+    branch: master
