@@ -1,6 +1,6 @@
 {
     "name": "stackerjs-http",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "author": {
         "name": "Vinicius Guedes",
         "email": "viniciusgued@gmail.com",
@@ -8,6 +8,10 @@
     },
     "main": "lib/index.js",
     "types": "index.d.ts",
+    "files": [
+        "index.d.ts", "lib", "package.json", "package-lock.json", "README.md"
+    ],
+    
     "dependencies": {
         "babel-polyfill": "^6.26.0",
         "request": "^2.83.0",
@@ -24,6 +28,7 @@
         "mocha": "^5.0.1",
         "nyc": "^11.5.0"
     },
+
     "nyc": {
         "exclude": [
             "lib"
