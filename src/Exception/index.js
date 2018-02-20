@@ -5,7 +5,7 @@ import { ForbiddenError } from './ForbiddenError';
 import { NotFoundError } from './NotFoundError';
 
 
-exports.Exceptions = {
+exports.Exception = {
     HttpError,
     BadRequestError,
     UnauthorizedError,
