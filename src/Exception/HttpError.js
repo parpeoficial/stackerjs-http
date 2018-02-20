@@ -9,11 +9,8 @@ export class HttpError extends Error
         super(message);
         this.code = Response.HTTP_INTERNAL_SERVER_ERROR;
         this.message = message;
-    }
 
-    getCode()
-    {
-        return this.code;
+        this.getCode = () => this.code;
     }
 
 }
