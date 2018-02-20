@@ -1,3 +1,4 @@
+import { Response } from './../Response';
 
 
 export class HttpError extends Error
@@ -6,7 +7,7 @@ export class HttpError extends Error
     constructor(message)
     {
         super(message);
-        this.code = 500;
+        this.code = Response.HTTP_INTERNAL_SERVER_ERROR;
         this.message = message;
     }
 

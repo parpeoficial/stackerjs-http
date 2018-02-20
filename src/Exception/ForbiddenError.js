@@ -1,4 +1,5 @@
 import { HttpError } from './HttpError';
+import { Response } from './../Response';
 
 
 export class ForbiddenError extends HttpError
