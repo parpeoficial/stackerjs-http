@@ -8,3 +8,29 @@
 
 # Http
 Package for managing Http requests and responses in and outside [StackerJS](https://github.com/parpeoficial/stackerjs)
+
+## Usage
+
+### Response
+```javascript
+    import { Http } from 'stackerjs-http';
+
+    let httpResponse = new Http.Response();
+    
+    httpResponse.setContent({ 'status': true });
+    httpResponse.setContent("Everything is ok"); // or
+    httpResponse.setContent(new Buffer("Something")); // or
+
+    httpResponse.setStatusCode(200);
+```
+
+### MakeRequest
+```javascript
+    new Http.MakeRequest()
+        .setPort(3000)
+        .setHeader('Authorization', 'Bearer some-token')
+        .get('/v1/some/api', { 'limit': 10 }) // same for post(), put(), delete() or patch()
+        .then(httpResponse => { // instance of Http.Response
+            let content = httpResponse.getContent();
+        });
+```
