@@ -1,35 +1,32 @@
-import { expect } from 'chai';
-import { Http } from './../../lib';
+import { expect } from "chai";
+import { Http } from "./../../lib";
 
-
-describe('Unit/ResponseTest', () => 
+describe("Unit/ResponseTest", () => 
 {
-    describe('Setting Header', () => 
+    describe("Setting Header", () => 
     {
-        it('Should set header', () => 
+        it("Should set header", () => 
         {
-            expect(new Http.Response().setHeaders({ 'auth': '123' }).getHeaders())
-                .to.have.property('auth');
+            expect(new Http.Response().setHeaders({ auth: "123" }).getHeaders()).to.have.property("auth");
         });
     });
 
-    describe('Setting Content', () => 
+    describe("Setting Content", () => 
     {
-        it('Should not define content if different of string, Buffer or Array/Object', () => 
+        it("Should not define content if different of string, Buffer or Array/Object", () => 
         {
             expect(new Http.Response().setContent(1).getContent()).to.be.null;
         });
 
-        it('Should set content as string', () => 
+        it("Should set content as string", () => 
         {
-            expect(new Http.Response().setContent('OK').getContent())
-                .to.be.equal("OK");
+            expect(response("OK").getContent()).to.be.equal("OK");
+            // same as -> expect(new Http.Response().setContent("OK").getContent()).to.be.equal("OK");
         });
 
-        it('Should set content as Array', () => 
+        it("Should set content as Array", () => 
         {
-            expect(new Http.Response().setContent([ 1, 2, 3 ]).getContent())
-                .to.be.an('array');
+            expect(new Http.Response().setContent([1, 2, 3]).getContent()).to.be.an("array");
         });
     });
 });

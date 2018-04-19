@@ -1,85 +1,87 @@
-
-
-export class Request
+export class Request 
 {
-
-    constructor(request)
-    {            
+    constructor(request) 
+    {
         this.request = request;
         this.params = Object.assign({}, this.getParams(), this.getQueries());
     }
 
-    get(key, defaultValue=null)
+    get(key, defaultValue = null) 
     {
-        if (typeof this.params[key] !== 'undefined')
-            return this.params[key];
-            
+        if (typeof this.params[key] !== "undefined") return this.params[key];
+
         return defaultValue;
     }
-    
-    getBody()
+
+    getBody() 
     {
         return this.request.body;
     }
 
-    getCompleteUrl()
+    getCompleteUrl() 
     {
-        return `${this.getProtocol()}://` + 
+        return (
+            `${this.getProtocol()}://` +
             `${this.getHostName()}:${this.getPort()}` +
-            `${this.getUrl()}`;
+            `${this.getUrl()}`
+        );
     }
 
-    getHeaders()
+    getHeaders() 
     {
         return this.request.headers;
     }
 
-    getHostName()
+    getHostName() 
     {
         return this.request.hostname;
     }
 
-    getIPAddress()
+    getIPAddress() 
     {
         return this.request.ip;
     }
 
-    getMethod()
+    getMethod() 
     {
         return this.request.method.toUpperCase();
     }
 
-    getParams()
+    getParams() 
     {
         return this.request.params;
     }
 
-    getPort()
+    getPort() 
     {
         return this.request.socket.localPort;
     }
 
-    getProtocol()
+    getProtocol() 
     {
         return this.request.protocol;
     }
 
-    getQueries()
+    getQueries() 
     {
         let queries = this.request.query;
-        Object.keys(queries)
-            .forEach((field) => {
-                try {
-                    queries[field] = JSON.parse(queries[field]);
-                } catch (err) { queries[field] = queries[field]; }
-            });
+        Object.keys(queries).forEach(field => 
+        {
+            try 
+            {
+                queries[field] = JSON.parse(queries[field]);
+            }
+            catch (err) 
+            {
+                queries[field] = queries[field];
+            }
+        });
 
         return queries;
     }
 
-    getUrl()
+    getUrl() 
     {
         return this.request.path;
     }
-
 }

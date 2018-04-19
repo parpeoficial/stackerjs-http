@@ -1,22 +1,24 @@
-import { Response } from './../Response';
+import { Response } from "./../Response";
 
-
-export class HttpError extends Error
+export class HttpError extends Error 
 {
-
-    constructor(message)
+    constructor(message) 
     {
-        super(typeof message === 'object' ? JSON.stringify(message) : message);
+        super(typeof message === "object" ? JSON.stringify(message) : message);
         Error.captureStackTrace(this, HttpError);
 
         this.code = Response.HTTP_INTERNAL_SERVER_ERROR;
         this.getCode = () => this.code;
-        this.getMessage = () =>
+        this.getMessage = () => 
         {
-            try {
+            try 
+            {
                 return JSON.parse(this.message);
-            } catch (err) { return this.message }
-        }
+            }
+            catch (err) 
+            {
+                return this.message;
+            }
+        };
     }
-
 }
