@@ -1,105 +1,103 @@
-const request = require('request');
-import { parse as urlparser } from 'url';
-import { Response } from './Response';
+const request = require("request");
+import { parse as urlparser } from "url";
+import { Response } from "./Response";
 
-
-export class MakeRequest
+export class MakeRequest 
 {
-    
-    constructor()
+    constructor() 
     {
         this.headers = {
-            'Content-type': 'application/json'
+            "Content-type": "application/json"
         };
-        this.host = 'localhost';
+        this.host = "localhost";
         this.port = 80;
         this.timeout = 3000;
     }
 
-    setHeader(key, value)
+    setHeader(key, value) 
     {
         this.headers[key] = value;
         return this;
     }
 
-    setHost(host)
+    setHost(host) 
     {
         this.host = host;
         return this;
     }
 
-    setPort(port)
+    setPort(port) 
     {
         this.port = port;
         return this;
     }
 
-    setTimeout(timeout)
+    setTimeout(timeout) 
     {
         this.timeout = timeout;
         return this;
     }
 
-    get(url, params = {})
+    get(url, params = {}) 
     {
         return this.treatRequest({
-            'method': 'GET',
-            'url': this.treatUrl(url, params),
-            'timeout': this.timeout,
-            'headers': this.headers
+            method: "GET",
+            url: this.treatUrl(url, params),
+            timeout: this.timeout,
+            headers: this.headers
         });
     }
 
-    post(url, params = {}, body = {})
+    post(url, params = {}, body = {}) 
     {
         return this.treatRequest({
-            'method': 'POST',
-            'url': this.treatUrl(url, params),
-            'timeout': this.timeout,
-            'headers': this.headers,
-            'body': JSON.stringify(body)
+            method: "POST",
+            url: this.treatUrl(url, params),
+            timeout: this.timeout,
+            headers: this.headers,
+            body: JSON.stringify(body)
         });
     }
 
-    put(url, params = {}, body = {})
+    put(url, params = {}, body = {}) 
     {
         return this.treatRequest({
-            'method': 'PUT',
-            'url': this.treatUrl(url, params),
-            'timeout': this.timeout,
-            'headers': this.headers,
-            'body': JSON.stringify(body)
+            method: "PUT",
+            url: this.treatUrl(url, params),
+            timeout: this.timeout,
+            headers: this.headers,
+            body: JSON.stringify(body)
         });
     }
 
-    patch(url, params = {}, body = {})
+    patch(url, params = {}, body = {}) 
     {
         return this.treatRequest({
-            'method': 'PATCH',
-            'url': this.treatUrl(url, params),
-            'timeout': this.timeout,
-            'headers': this.headers,
-            'body': JSON.stringify(body)
+            method: "PATCH",
+            url: this.treatUrl(url, params),
+            timeout: this.timeout,
+            headers: this.headers,
+            body: JSON.stringify(body)
         });
     }
 
-    delete(url, params = {})
+    delete(url, params = {}) 
     {
         return this.treatRequest({
-            'method': 'DELETE',
-            'url': this.treatUrl(url, params),
-            'timeout': this.timeout,
-            'headers': this.headers
+            method: "DELETE",
+            url: this.treatUrl(url, params),
+            timeout: this.timeout,
+            headers: this.headers
         });
     }
 
-    treatRequest(configurations)
+    treatRequest(configurations) 
     {
         return new Promise((resolve, reject) => 
         {
-            request(configurations, (err, response, body) => {
-                if (err)
-                    return reject(err);
+            request(configurations, (err, response, body) => 
+            {
+                if (err) return reject(err);
 
                 let httpResponse = new Response();
                 httpResponse.setHeaders(response.headers);
@@ -111,39 +109,40 @@ export class MakeRequest
         });
     }
 
-    treatUrl(url, params)
+    treatUrl(url, params) 
     {
         let urlInfo = urlparser(url);
-            params = Object.keys(params)
-                .map((key) => {
-                    if (Array.isArray(params[key]) || typeof params[key] === 'object')
-                        return `${key}=${JSON.stringify(params[key])}`;
+        params = Object.keys(params).map(key => 
+        {
+            if (Array.isArray(params[key]) || typeof params[key] === "object")
+                return `${key}=${JSON.stringify(params[key])}`;
 
-                    return `${key}=${params[key]}`;
-                });
+            return `${key}=${params[key]}`;
+        });
 
         if (urlInfo.query)
-            urlInfo.query.toString().split('&').map(query => params.push(query));
-        
-        if (urlInfo.host) {
+            urlInfo.query
+                .toString()
+                .split("&")
+                .map(query => params.push(query));
+
+        if (urlInfo.host) 
+        {
             url = `${urlInfo.protocol}//${urlInfo.host}${urlInfo.pathname}`;
-            url += params.length > 0 ? `?${params.join('&')}` : "";
+            url += params.length > 0 ? `?${params.join("&")}` : "";
 
             return url;
         }
-        
+
         let uri = `${this.host}`;
-        if (this.port !== 80)
-            uri += `:${this.port}`;
+        if (this.port !== 80) uri += `:${this.port}`;
 
         uri += url;
-        if (uri.substr(0, 7) !== 'http://' && uri.substr(0, 7) !== 'https:/')
+        if (uri.substr(0, 7) !== "http://" && uri.substr(0, 7) !== "https:/")
             uri = `http://${uri}`;
-            
-        if (params.length > 0)
-            uri += `?${params.join('&')}`;
-        
+
+        if (params.length > 0) uri += `?${params.join("&")}`;
+
         return uri;
     }
-
 }
