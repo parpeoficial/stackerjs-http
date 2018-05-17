@@ -69,6 +69,8 @@ export class Response
 Response.HTTP_OK = 200;
 Response.HTTP_CREATED = 201;
 Response.HTTP_ACCEPTED = 202;
+Response.HTTP_NO_CONTENT = 204;
+Response.HTTP_MOVED_PERMANENTLY = 301;
 Response.HTTP_BAD_REQUEST = 400;
 Response.HTTP_UNAUTHORIZED = 401;
 Response.HTTP_FORBIDDEN = 403;

@@ -3,10 +3,7 @@ import { MakeRequest } from "./MakeRequest";
 import { Response } from "./Response";
 import { Request } from "./Request";
 
-global.response = (content, statusCode = Response.HTTP_OK) =>
-    new Response().setContent(content).setStatusCode(statusCode);
-
-exports.Http = {
+export const Http = {
     MakeRequest,
     Request,
     Response,

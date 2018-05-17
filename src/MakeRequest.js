@@ -1,4 +1,4 @@
-const request = require("request");
+import axios from "axios";
 import { parse as urlparser } from "url";
 import { Response } from "./Response";
 
@@ -93,20 +93,25 @@ export class MakeRequest
 
     treatRequest(configurations) 
     {
-        return new Promise((resolve, reject) => 
-        {
-            request(configurations, (err, response, body) => 
+        return axios(configurations)
+            .then(this.formatResponse)
+            .catch(err => 
             {
-                if (err) return reject(err);
+                if (!err.response)
+                    throw err;
 
-                let httpResponse = new Response();
-                httpResponse.setHeaders(response.headers);
-                httpResponse.setStatusCode(response.statusCode);
-                httpResponse.setContent(body);
-
-                resolve(httpResponse);
+                return this.formatResponse(err.response);
             });
-        });
+    }
+
+    formatResponse(axiosResponse) 
+    {
+        let httpResponse = new Response();
+        httpResponse.setHeaders(axiosResponse.headers);
+        httpResponse.setStatusCode(axiosResponse.status);
+        httpResponse.setContent(axiosResponse.data);
+
+        return httpResponse;
     }
 
     treatUrl(url, params) 
