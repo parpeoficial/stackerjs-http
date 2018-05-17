@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Http } from "./../../lib";
+import { Http } from "./../../index";
 
 describe("Unit/ResponseTest", () => 
 {
@@ -20,8 +20,8 @@ describe("Unit/ResponseTest", () =>
 
         it("Should set content as string", () => 
         {
-            expect(response("OK").getContent()).to.be.equal("OK");
-            // same as -> expect(new Http.Response().setContent("OK").getContent()).to.be.equal("OK");
+            // expect(response("OK").getContent()).to.be.equal("OK");
+            expect(new Http.Response().setContent("OK").getContent()).to.be.equal("OK");
         });
 
         it("Should set content as Array", () => 

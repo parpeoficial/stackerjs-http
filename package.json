@@ -9,30 +9,41 @@
     "main": "lib/index.js",
     "types": "index.d.ts",
     "dependencies": {
+        "axios": "^0.18.0",
         "babel-polyfill": "^6.26.0",
-        "request": "^2.85.0",
         "stackerjs-types": "^1.1.1"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.0",
-        "babel-plugin-istanbul": "^4.1.6",
         "babel-preset-env": "^1.6.1",
         "babel-register": "^6.26.0",
         "chai": "^4.1.2",
         "express": "^4.16.3",
+        "husky": "^0.14.3",
+        "lint-staged": "^7.1.0",
         "mocha": "^5.1.1",
         "nyc": "^11.7.1"
     },
     "nyc": {
-        "exclude": ["lib"],
-        "instrument": false,
-        "require": ["babel-register", "babel-polyfill"],
-        "reporter": ["lcov", "text"],
-        "sourceMap": true
+        "exclude": [
+            "lib",
+            "test",
+            "index.js"
+        ],
+        "require": [
+            "babel-register",
+            "babel-polyfill"
+        ],
+        "reporter": [
+            "lcov",
+            "text"
+        ]
     },
     "scripts": {
+        "precommit": "./node_modules/.bin/lint-staged",
+        "lint": "eslint src/ test/ --fix",
         "build": "./node_modules/.bin/babel src -d lib",
-        "test": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha"
+        "test": "NODE_ENV=dev ./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha"
     }
 }
