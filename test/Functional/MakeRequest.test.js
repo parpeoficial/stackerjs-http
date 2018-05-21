@@ -1,6 +1,5 @@
 import { expect } from "chai";
-import { Http } from "./../../index";
-
+import { Http } from "./../../src";
 
 describe("Functional/MakeRequestTest", () => 
 {
@@ -28,7 +27,7 @@ describe("Functional/MakeRequestTest", () =>
                 .setTimeout(3000)
                 .setHost(API)
                 .setHeader("Auth", "Bearer 123")
-                .get("/comments", { "postId": POST_ID })
+                .get("/comments", { postId: POST_ID })
                 .then(httpResponse => 
                 {
                     let content = httpResponse.getContent();
@@ -44,7 +43,8 @@ describe("Functional/MakeRequestTest", () =>
                 .setTimeout(5000)
                 .setHost(API)
                 .get("/posts/-10")
-                .then(httpResponse => expect(httpResponse.getStatusCode()).to.be.equal(Http.Response.HTTP_NOT_FOUND))
+                .then(httpResponse =>
+                    expect(httpResponse.getStatusCode()).to.be.equal(Http.Response.HTTP_NOT_FOUND))
                 .then(() => done());
         });
     });
@@ -56,11 +56,16 @@ describe("Functional/MakeRequestTest", () =>
             new Http.MakeRequest()
                 .setTimeout(5000)
                 .setHost(API)
-                .post("/posts", {}, {
-                    "userId": 1,
-                    "title": "Welcome baby",
-                    "body": "Hey bae, welcome to stackerjs-http, here you gonna find anything"
-                })
+                .post(
+                    "/posts",
+                    {},
+                    {
+                        userId: 1,
+                        title: "Welcome baby",
+                        body:
+                            "Hey bae, welcome to stackerjs-http, here you gonna find anything"
+                    }
+                )
                 .then(httpResponse => 
                 {
                     let content = httpResponse.getContent();
@@ -77,9 +82,13 @@ describe("Functional/MakeRequestTest", () =>
         {
             new Http.MakeRequest()
                 .setHost(API)
-                .put(`/posts/${POST_ID}`, {}, {
-                    "title": "New  information about stackerJS"
-                })
+                .put(
+                    `/posts/${POST_ID}`,
+                    {},
+                    {
+                        title: "New  information about stackerJS"
+                    }
+                )
                 .then(httpResponse => 
                 {
                     expect(httpResponse.getStatusCode()).to.be.equal(Http.Response.HTTP_OK);
@@ -94,8 +103,12 @@ describe("Functional/MakeRequestTest", () =>
         {
             new Http.MakeRequest()
                 .setHost(API)
-                .patch("/comments", { "postId": POST_ID, "testing": { "some": "thing" } })
-                .then(httpResponse => expect(httpResponse.getStatusCode()).to.be.equal(404))
+                .patch("/comments", {
+                    postId: POST_ID,
+                    testing: { some: "thing" }
+                })
+                .then(httpResponse =>
+                    expect(httpResponse.getStatusCode()).to.be.equal(404))
                 .then(() => done());
         });
     });
@@ -107,7 +120,8 @@ describe("Functional/MakeRequestTest", () =>
             new Http.MakeRequest()
                 .setHost(API)
                 .delete(`/posts/${POST_ID}`)
-                .then(httpResponse => expect(httpResponse.getStatusCode()).to.be.equal(Http.Response.HTTP_OK))
+                .then(httpResponse =>
+                    expect(httpResponse.getStatusCode()).to.be.equal(Http.Response.HTTP_OK))
                 .then(() => done());
         });
     });
@@ -119,9 +133,9 @@ describe("Functional/MakeRequestTest", () =>
             new Http.MakeRequest()
                 .setPort(3000)
                 .get("/some-thing")
-                .catch(err => expect(err.message).to.be.equal("connect ECONNREFUSED 127.0.0.1:3000"))
+                .catch(err =>
+                    expect(err.message).to.be.equal("connect ECONNREFUSED 127.0.0.1:3000"))
                 .then(() => done());
         });
     });
-
 });

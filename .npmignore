@@ -1,8 +1,8 @@
 # App files to ignore
 /.babelrc
-/cc-test-reporter
 /.nyc_output
 /.travis.yml
+/cc-test-reporter
 /coverage
 /node_modules
 /src

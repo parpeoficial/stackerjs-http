@@ -1,39 +1,39 @@
 import { expect } from "chai";
-import { Http } from "./../../index";
-
+import { Http } from "./../../src";
 
 describe("Unit/RequestTest", () => 
 {
-    let ANY_ID = 1203120983, REQUEST;
+    let ANY_ID = 1203120983,
+        REQUEST;
 
     describe("Creating Request", () => 
     {
         it("Should create a Request", () => 
         {
             REQUEST = new Http.Request({
-                "method": "GET",
-                "query": {
-                    "some": "thing"
+                method: "GET",
+                query: {
+                    some: "thing"
                 },
-                "params": {
-                    "id": ANY_ID
+                params: {
+                    id: ANY_ID
                 },
-                "socket": {
-                    "localPort": 5000
+                socket: {
+                    localPort: 5000
                 },
-                "headers": {
-                    "Authorization": "Bearer s0m3t0k3nth4t3n4bl3funct1on5"
+                headers: {
+                    Authorization: "Bearer s0m3t0k3nth4t3n4bl3funct1on5"
                 },
-                "body": {
-                    "user": {
-                        "name": "Vinicius Guedes",
-                        "birthday": new Date("1992-12-30 08:25:01").toString()
+                body: {
+                    user: {
+                        name: "Vinicius Guedes",
+                        birthday: new Date("1992-12-30 08:25:01").toString()
                     }
                 },
-                "ip": "127.0.0.1",
-                "hostname": "localhost",
-                "protocol": "http",
-                "path": "/users"
+                ip: "127.0.0.1",
+                hostname: "localhost",
+                protocol: "http",
+                path: "/users"
             });
         });
     });
@@ -90,5 +90,4 @@ describe("Unit/RequestTest", () =>
             expect(headers).to.have.property("Authorization");
         });
     });
-
 });
