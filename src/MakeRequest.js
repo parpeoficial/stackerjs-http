@@ -48,36 +48,36 @@ export class MakeRequest
         });
     }
 
-    post(url, params = {}, body = {}) 
+    post(url, params = {}, data = {}) 
     {
         return this.treatRequest({
             method: "POST",
             url: this.treatUrl(url, params),
             timeout: this.timeout,
             headers: this.headers,
-            body: JSON.stringify(body)
+            data
         });
     }
 
-    put(url, params = {}, body = {}) 
+    put(url, params = {}, data = {}) 
     {
         return this.treatRequest({
             method: "PUT",
             url: this.treatUrl(url, params),
             timeout: this.timeout,
             headers: this.headers,
-            body: JSON.stringify(body)
+            data
         });
     }
 
-    patch(url, params = {}, body = {}) 
+    patch(url, params = {}, data = {}) 
     {
         return this.treatRequest({
             method: "PATCH",
             url: this.treatUrl(url, params),
             timeout: this.timeout,
             headers: this.headers,
-            body: JSON.stringify(body)
+            data
         });
     }
 
@@ -97,8 +97,7 @@ export class MakeRequest
             .then(this.formatResponse)
             .catch(err => 
             {
-                if (!err.response)
-                    throw err;
+                if (!err.response) throw err;
 
                 return this.formatResponse(err.response);
             });

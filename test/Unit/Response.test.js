@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Http } from "./../../index";
+import { Http } from "./../../src";
 
 describe("Unit/ResponseTest", () => 
 {
