@@ -1,5 +1,8 @@
 # App files to ignore
 /.babelrc
+/.eslintrc.json
+/.gitignore
+/.lintstagedrc
 /.nyc_output
 /.travis.yml
 /cc-test-reporter
