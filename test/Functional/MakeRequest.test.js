@@ -26,7 +26,9 @@ describe("Functional/MakeRequestTest", () =>
             new Http.MakeRequest()
                 .setTimeout(3000)
                 .setHost(API)
-                .setHeader("Auth", "Bearer 123")
+                .setHeaders({
+                    Auth: "Bearer 123"
+                })
                 .get("/comments", { postId: POST_ID })
                 .then(httpResponse => 
                 {

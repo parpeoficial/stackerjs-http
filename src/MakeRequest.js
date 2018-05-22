@@ -20,6 +20,13 @@ export class MakeRequest
         return this;
     }
 
+    setHeaders(headers)
+    {
+        Object.keys(headers).forEach(header => this.setHeader(header, headers[header]));
+        
+        return this;
+    }
+
     setHost(host) 
     {
         this.host = host;
