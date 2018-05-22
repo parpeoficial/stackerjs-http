@@ -1,57 +1,57 @@
 {
-    "name": "stackerjs-http",
-    "version": "0.0.0-development",
-    "author": {
-        "name": "Vinicius Guedes",
-        "email": "viniciusgued@gmail.com",
-        "url": "https://vinyguedess.github.io"
-    },
-    "main": "lib/index.js",
-    "types": "index.d.ts",
-    "dependencies": {
-        "axios": "^0.18.0",
-        "babel-polyfill": "^6.26.0",
-        "stackerjs-types": "^1.1.1"
-    },
-    "devDependencies": {
-        "babel-cli": "^6.26.0",
-        "babel-core": "^6.26.0",
-        "babel-preset-env": "^1.6.1",
-        "babel-register": "^6.26.0",
-        "chai": "^4.1.2",
-        "express": "^4.16.3",
-        "husky": "^0.14.3",
-        "lint-staged": "^7.1.0",
-        "mocha": "^5.1.1",
-        "nyc": "^11.7.1",
-        "semantic-release": "^15.5.0",
-        "travis-deploy-once": "^5.0.0"
-    },
-    "nyc": {
-        "exclude": [
-            "lib",
-            "test",
-            "index.js"
-        ],
-        "require": [
-            "babel-register",
-            "babel-polyfill"
-        ],
-        "reporter": [
-            "lcov",
-            "text"
-        ]
-    },
-    "scripts": {
-        "precommit": "./node_modules/.bin/lint-staged",
-        "lint": "eslint src/ test/ --fix",
-        "build": "./node_modules/.bin/babel src -d lib",
-        "test": "NODE_ENV=dev ./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha",
-        "travis-deploy-once": "travis-deploy-once",
-        "semantic-release": "semantic-release"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/parpeoficial/stackerjs-http.git"
-    }
+  "name": "stackerjs-http",
+  "version": "0.0.0-development",
+  "author": {
+    "name": "Vinicius Guedes",
+    "email": "viniciusgued@gmail.com",
+    "url": "https://vinyguedess.github.io"
+  },
+  "main": "lib/index.js",
+  "types": "index.d.ts",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "stackerjs-types": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "express": "^4.16.3",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.1.0",
+    "mocha": "^5.1.1",
+    "nyc": "^11.7.1",
+    "semantic-release": "^15.5.0",
+    "travis-deploy-once": "^5.0.0"
+  },
+  "nyc": {
+    "exclude": [
+      "lib",
+      "test",
+      "index.js"
+    ],
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
+  "scripts": {
+    "precommit": "./node_modules/.bin/lint-staged",
+    "lint": "eslint src/ test/ --fix",
+    "build": "./node_modules/.bin/babel src -d lib",
+    "test": "NODE_ENV=dev ./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parpeoficial/stackerjs-http.git"
+  }
 }
