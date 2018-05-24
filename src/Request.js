@@ -39,7 +39,10 @@ export class Request
 
     getIPAddress() 
     {
-        return this.request.ip;
+        return this.request.headers["x-forwarded-for"] ||
+            (this.request.connection && this.request.connection.remoteAddress) ||
+            this.request.socket.remoteAddress ||
+            this.request.ip;
     }
 
     getMethod() 
