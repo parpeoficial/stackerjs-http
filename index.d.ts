@@ -13,7 +13,8 @@ declare function response(content: string | any, statusCode?: number): StackerJS
 declare module "stackerjs-http"
 {
 
-    export namespace Http {
+    export namespace Http
+    {
 
         export class Request extends StackerJS.Http.Request { }
 
@@ -21,7 +22,8 @@ declare module "stackerjs-http"
 
         export class MakeRequest extends StackerJS.Http.MakeRequest { }
 
-        export namespace Exception {
+        export namespace Exception
+        {
 
             export abstract class HttpError extends StackerJS.Http.Exception.HttpError { }
 

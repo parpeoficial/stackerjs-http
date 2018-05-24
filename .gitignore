@@ -3,6 +3,7 @@
 /coverage
 /lib
 /node_modules
+/yarn-error.log
 
 # OS and IDE files and folders
 /.idea
