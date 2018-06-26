@@ -1,5 +1,6 @@
 import axios from "axios";
 import { parse as urlparser } from "url";
+import { Config } from "stackerjs-utils";
 import { Response } from "./Response";
 
 export class MakeRequest 
@@ -20,10 +21,10 @@ export class MakeRequest
         return this;
     }
 
-    setHeaders(headers)
+    setHeaders(headers) 
     {
         Object.keys(headers).forEach(header => this.setHeader(header, headers[header]));
-        
+
         return this;
     }
 
@@ -100,7 +101,10 @@ export class MakeRequest
 
     treatRequest(configurations) 
     {
-        return axios(configurations)
+        return axios({
+            ...configurations,
+            maxContentLength: Config.get("app.upload.limit", 2000000)
+        })
             .then(this.formatResponse)
             .catch(err => 
             {

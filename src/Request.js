@@ -76,7 +76,7 @@ export class Request
             }
             catch (err) 
             {
-                queries[field] = queries[field];
+                // Do nothing
             }
         });
 
